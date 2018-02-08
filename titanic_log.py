@@ -7,8 +7,8 @@ from sklearn.model_selection import train_test_split
 data = pd.read_csv('train.csv')
 print(data.head())
 data = data.replace({'Embarked': {'S': 1, 'C': 2, 'Q': 3}, 'Sex': {'male': 1, 'female': 2}})
-data.loc[data['Cabin'].notna(), 'Cabin'] = 1
-data = data.fillna({'Cabin': 0})
+#data.loc[data['Cabin'].notna(), 'Cabin'] = 1
+#data = data.fillna({'Cabin': 0})
 data = data.fillna({'Age': data['Age'].mean()})
 
 #data[['Last_Name', 'First_Name']] = data['Name'].str.split(',', expand=True)
@@ -28,7 +28,7 @@ X.insert(0, 'Pclass_age', value=X['Pclass'] * X['Age'])
 #X.insert(0, 'Embarked_Fare', value=X['Embarked'] * X['Fare'])
 X = (X - X.mean()) / X.std()
 X = pd.get_dummies(X, columns=['Sex', 'Pclass', 'Embarked'])
-X.insert(0, 'Cabin', value=data['Cabin'])
+#X.insert(0, 'Cabin', value=data['Cabin'])
 
 #print(X.iloc[0:10, :])
 
